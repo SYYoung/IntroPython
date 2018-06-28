@@ -51,7 +51,10 @@ def isWordGuessed(secretWord, lettersGuessed):
       False otherwise
     '''
     # FILL IN YOUR CODE HERE...
-
+    for w in secretWord:
+        if w not in lettersGuessed:
+            return False
+    return True
 
 
 def getGuessedWord(secretWord, lettersGuessed):
@@ -62,6 +65,12 @@ def getGuessedWord(secretWord, lettersGuessed):
       what letters in secretWord have been guessed so far.
     '''
     # FILL IN YOUR CODE HERE...
+    outList = list(secretWord)
+    for i in range(len(outList)):
+        if (outList[i] not in lettersGuessed):
+            outList[i] = '_'
+    outStr = ' '.join(outList)
+    return outStr
 
 
 
@@ -72,6 +81,12 @@ def getAvailableLetters(lettersGuessed):
       yet been guessed.
     '''
     # FILL IN YOUR CODE HERE...
+    allLettersList = list(string.ascii_lowercase)
+    for i in lettersGuessed:
+        del(allLettersList[allLettersList.index(i)])
+    outStr = ''.join(allLettersList)
+    return outStr
+    
     
 
 def hangman(secretWord):
@@ -105,5 +120,14 @@ def hangman(secretWord):
 # and run this file to test! (hint: you might want to pick your own
 # secretWord while you're testing)
 
-# secretWord = chooseWord(wordlist).lower()
+#secretWord = chooseWord(wordlist).lower()
 # hangman(secretWord)
+
+# test code
+secretWord = 'apple'
+lettersGuessed = ['e', 'i', 'k', 'p', 'r', 's']
+#result = isWordGuessed(secretWord, lettersGuessed)
+#print(getGuessedWord(secretWord, lettersGuessed))
+import string
+print(getAvailableLetters(lettersGuessed))
+
