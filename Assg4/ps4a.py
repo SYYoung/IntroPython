@@ -279,9 +279,24 @@ def playGame(wordList):
     2) When done playing the hand, repeat from step 1    
     """
     # TO DO ... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this line when you code the function
-   
-
+    inputStat = "Enter n to deal a new hand, r to replay the last hand, or e to end game: "
+    choice = 'n'
+    hand = {}
+    while (choice != 'e'):
+        choice = input(inputStat)
+        if (choice == "n"):
+            hand = dealHand()
+            oldHand = hand.copy()
+            playHand(hand, wordlist, HAND_SIZE)
+        elif (choice == "r"):
+            if (not hand):
+                print("You have not played a hand yet. Please play a new hand first.")
+            else:
+                hand = oldHand.copy()
+                playHand(hand, wordlist, HAND_SIZE)
+        elif (choice == "e"):
+        else :
+            print("Invalid command.")
 
 
 #
@@ -293,5 +308,5 @@ if __name__ == '__main__':
     dict1 = {'h':1, 'i':1, 'c':1, 'z':1, 'm':2, 'a':1}
     dict2 = {'w':1, 's':1, 't':2, 'a':1, 'o':1, 'f':1}
     dict3 = {'n':1, 'e':1, 't':1, 'a':1, 'r':1, 'i':2}
-    playHand(dict3, wordList, 7)
-    #playGame(wordList)
+    #playHand(dict3, wordList, 7)
+    playGame(wordList)
