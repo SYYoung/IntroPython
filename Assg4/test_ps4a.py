@@ -1,4 +1,4 @@
-from ps4a import *
+afrom ps4a import *
 
 #
 # Test code
