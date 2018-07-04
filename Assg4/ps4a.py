@@ -285,16 +285,18 @@ def playGame(wordList):
     while (choice != 'e'):
         choice = input(inputStat)
         if (choice == "n"):
-            hand = dealHand()
+            hand = dealHand(HAND_SIZE)
+            #hand = {'a':1, 'r':1, 'e':1, 't':1, 'i':2, 'n':1}
             oldHand = hand.copy()
-            playHand(hand, wordlist, HAND_SIZE)
+            playHand(hand, wordList, HAND_SIZE)
         elif (choice == "r"):
             if (not hand):
                 print("You have not played a hand yet. Please play a new hand first.")
             else:
                 hand = oldHand.copy()
-                playHand(hand, wordlist, HAND_SIZE)
+                playHand(hand, wordList, HAND_SIZE)
         elif (choice == "e"):
+            break
         else :
             print("Invalid command.")
 
