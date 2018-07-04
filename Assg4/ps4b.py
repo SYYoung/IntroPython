@@ -100,6 +100,13 @@ def compPlayHand(hand, wordList, n):
 # Problem #6: Playing a game
 #
 #
+def getValidInput(validList, statement):
+    myChoice = input(statement)
+    while (myChoice not in validList):
+        print("Invalid command.")
+        myChoice = input(statement)
+    return myChoice
+        
 def playGame(wordList):
     """
     Allow the user to play an arbitrary number of hands.
@@ -125,37 +132,30 @@ def playGame(wordList):
     wordList: list (string)
     """
     # TO DO... <-- Remove this comment when you code this function
-    inputStat = "Enter n to deal a new hand, r to replay the last hand, or e to end game: "
-    playerCommand = "Enter u to have yourself play, c to have the computer play: "
+    commandStat = "Enter n to deal a new hand, r to replay the last hand, or e to end game: "
+    userStat = "Enter u to have yourself play, c to have the computer play: "
     hand = {}
-    commandDict = {'u': playHand, 'c': compPlayHand}
     validCommand = ['n', 'r', 'e']
+    validUser = ['u', 'c']
     choice = 'n'
+    commandDict = {'u':playHand, 'c':compPlayHand}
     while (choice != 'e'):
-        choice = input(inputStat)
+        choice = getValidInput(validCommand, commandStat)
         if (choice == "n"):
             #hand = dealHand(HAND_SIZE)
             hand = {'a':1, 'p':1, 'y':1, 'h':2, 'z':1, 'o':1}
-            playerChoice = input(playerCommand)
-            while (playerChoice not in commandDict.keys()):
-                print("Invalid command.")
-                playerChoice = input(playerCommand)
+            playerChoice = getValidInput(validUser, userStat)
             oldHand = hand.copy()
             commandDict[playerChoice](hand, wordList, HAND_SIZE)
         elif (choice == "r"):
             if (not hand):
                 print("You have not played a hand yet. Please play a new hand first.")
             else:
-                playerChoice = input(playerCommand)
-                while (playerChoice not in commandDict.keys()):
-                    print("Invalid command.")
-                    playerChoice = input(playerCommand)
+                playerChoice = getValidInput(validUser, userStat)
                 hand = oldHand.copy()
                 commandDict[playerChoice](hand, wordList, HAND_SIZE)
         elif (choice == "e"):
             break
-        else :
-            print("Invalid command.")
 
         
 #
