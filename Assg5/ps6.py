@@ -250,3 +250,8 @@ print('Actual Output:', plaintext.get_message_text_encrypted())
 ciphertext = CiphertextMessage('jgnnq')
 print('Expected Output:', (24, 'hello'))
 print('Actual Output:', ciphertext.decrypt_message())
+
+#another assignment
+ctext = CiphertextMessage(get_story_string())
+(shift_val, decrypt_msg) = ctext.decrypt_message()
+print(shift_val, decrypt_msg)
